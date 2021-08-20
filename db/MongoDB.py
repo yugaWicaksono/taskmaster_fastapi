@@ -12,6 +12,10 @@ URI = f"mongodb+srv://{_user}:{_pass}{_host}/{_db}?retryWrites=true&w=majority"
 
 
 def get_database():
+    """
+    Get the database
+    :return: collection object of mongodb
+    """
     try:
         client = MongoClient(URI)
         collection = client[_db][_collection]
