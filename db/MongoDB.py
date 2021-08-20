@@ -1,13 +1,12 @@
 from pymongo import MongoClient
-from dotenv import dotenv_values
-from helpers.StringFormatter import StringFormatter
+from decouple import config
 
-config = dotenv_values(".env")
-_user = config["USER"]
-_pass = config["PASS"]
-_db = config["DB"]
-_collection = config["COLL"]
-_host = config["HOST"]
+
+_user = config("USER")
+_pass = config("PASS")
+_db = config("DB")
+_collection = config("COLL")
+_host = config("HOST")
 URI = f"mongodb+srv://{_user}:{_pass}{_host}/{_db}?retryWrites=true&w=majority"
 
 

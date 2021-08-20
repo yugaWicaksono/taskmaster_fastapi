@@ -1,7 +1,13 @@
-from fastapi import FastAPI
+from fastapi import Security, Depends, FastAPI, HTTPException
+from fastapi.security.api_key import APIKeyQuery, APIKeyCookie, APIKeyHeader, APIKey
 from db.MongoDB import MongoAPI
 from helpers.StringFormatter import StringFormatter
 from interface.body import BodyObject
+
+from starlette.status import HTTP_403_FORBIDDEN
+from starlette.responses import RedirectResponse, JSONResponse
+
+from decouple import config
 
 api = FastAPI()
 mongo = MongoAPI()
@@ -30,29 +36,65 @@ def convert_records(records):
     return _records
 
 
-@api.get("/api")
-def get_records():
+# START OF THE SERVER DEFINITION
+
+"""
+Only using query for now
+"""
+API_KEY = config("API_KEY")
+API_KEY_NAME = config("API_KEY_NAME")
+
+#api_key_query = APIKeyQuery(name=API_KEY_NAME, auto_error=False)
+api_key_header = APIKeyHeader(name=API_KEY_NAME, auto_error=False)
+# api_key_cookie = APIKeyCookie(name=API_KEY_NAME, auto_error=False)
+
+
+# noinspection PyShadowingNames
+async def get_api_key(
+        #api_key_query: str = Security(api_key_query),
+        api_key_header: str = Security(api_key_header),
+        # api_key_cookie: str = Security(api_key_cookie),
+):
+    """
+    Check the header for existence of api key
+    :param api_key_header: header with api key
+    :return: api key header
+    """
+    if api_key_header == API_KEY:
+        return api_key_header
+    # if api_key_query == API_KEY:
+    #     return api_key_query
+    # elif api_key_cookie == API_KEY:
+    #     return api_key_cookie
+    else:
+        raise HTTPException(
+            status_code=HTTP_403_FORBIDDEN, detail="Could not validate credentials"
+        )
+
+
+@api.get("/api/tasks")
+async def get_records(api_key: APIKey = Depends(get_api_key)):
     records = mongo.get_all_records()
     return {"status": 200, "data": records}
 
 
-@api.get("/api/task/{task_id}")
-def get_record(task_id: str):
-    _id = StringFormatter.convert_underscore_to_slash(task_id)
-    record = mongo.get_record_for_day(_id)
+@api.get("/api/tasks/{date_id}")
+async def get_record(date_id: str, api_key: APIKey = Depends(get_api_key)):
+    correct_day = StringFormatter.convert_underscore_to_slash(date_id)
+    record = mongo.get_record_for_day(correct_day)
     return {"status": 200, "data": record}
 
 
-@api.post("/api")
-async def create_record(body: BodyObject):
+@api.post("/api/tasks")
+async def create_record(body: BodyObject, api_key: APIKey = Depends(get_api_key)):
     records = convert_records(body.records)
     mongo.create_record_for_day(body.id, records)
     return {"status": 201, "data": []}
 
 
-
-@api.put("/api/task/{task_id}")
-def update_record(task_id: str, put: BodyObject):
+@api.put("/api/tasks/{date_id}")
+async def update_record(date_id: str, put: BodyObject, api_key: APIKey = Depends(get_api_key)):
+    correct_day = StringFormatter.convert_underscore_to_slash(date_id)
     records = convert_records(put.records)
-    mongo.update_record_for_day(task_id, records)
+    mongo.update_record_for_day(correct_day, records)
     return {"status": 200, "data": []}
