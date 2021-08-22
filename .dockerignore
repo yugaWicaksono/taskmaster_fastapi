@@ -1,0 +1,13 @@
+*.idea
+*__pycache__
+.git
+
+#testing
+test
+
+# run config pycharm
+.run
+
+# development
+app_dev.py
+scripts
