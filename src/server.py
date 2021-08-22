@@ -71,7 +71,7 @@ async def get_api_key(
             status_code=HTTP_403_FORBIDDEN, detail="Could not validate credentials"
         )
 
-
+#TODO add check of jwt here
 @api.get("/api/connection")
 async def get_connection():
     connected = mongo.get_connection()
