@@ -39,16 +39,14 @@ def convert_records(records):
 # START OF THE SERVER DEFINITION
 
 """
-Only using query for now
+Only using header for now
 """
 API_KEY = config("API_KEY")
 API_KEY_NAME = config("API_KEY_NAME")
 
 # api_key_query = APIKeyQuery(name=API_KEY_NAME, auto_error=False)
-api_key_header = APIKeyHeader(name=API_KEY_NAME, auto_error=False)
-
-
 # api_key_cookie = APIKeyCookie(name=API_KEY_NAME, auto_error=False)
+api_key_header = APIKeyHeader(name=API_KEY_NAME, auto_error=False)
 
 
 # noinspection PyShadowingNames
@@ -76,7 +74,8 @@ async def get_api_key(
 
 @api.get("/api/connection")
 async def get_connection():
-    pass
+    connected = mongo.get_connection()
+    return {"status": 200, "connected": connected}
 
 
 @api.get("/api/tasks")
