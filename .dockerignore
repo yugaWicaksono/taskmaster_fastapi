@@ -1,6 +1,6 @@
+Dockerfile
 *.idea
-*__pycache__
-.git
+__pycache__
 
 #testing
 test
