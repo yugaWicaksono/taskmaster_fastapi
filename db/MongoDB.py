@@ -1,7 +1,6 @@
 from pymongo import MongoClient
 from decouple import config
 
-
 _user = config("USER")
 _pass = config("PASS")
 _db = config("DB")
@@ -32,14 +31,22 @@ class MongoPost:
     """
     Records has to be array of tasks record
     """
-    def __init__(self, _id,  records):
-        self.mongo_rep = {"_id": _id,  "records": records}
+
+    def __init__(self, _id, records):
+        self.mongo_rep = {"_id": _id, "records": records}
 
 
 class MongoAPI:
     def __init__(self):
         self.collection = get_database()
-        self.active_record = None
+        # set is connected to this instance
+        if self.collection is ConnectionError:
+            self.isConnected = False
+        else:
+            self.isConnected = True
+
+    def get_connection(self):
+        return self.isConnected
 
     def get_all_records(self):
         data = []
@@ -64,8 +71,8 @@ class MongoAPI:
             # return record of day
             return record_day
 
-    def create_record_for_day(self, day,  records):
-        post = MongoPost(day,  records)
+    def create_record_for_day(self, day, records):
+        post = MongoPost(day, records)
         self.collection.insert_one(post.mongo_rep)
 
     def update_record_for_day(self, day, records):
