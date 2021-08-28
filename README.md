@@ -1,4 +1,4 @@
-# Taskmaster API (FastAPI + mongoDB)
+# Taskmaster API (FastAPI + mongoDB) v.0.2
 
 This is my first time building an API using FastAPI and mongoDB. Also, the first experience I have with
 these both technologies. I recommend using FastAPI if you want to build an API quickly 
