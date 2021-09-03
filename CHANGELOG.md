@@ -1,3 +1,9 @@
+## 0.5
+
+### Features
+* Implemented extra notes field
+* Implemented deletion of day record and task for selected day
+
 ## 0.2
 
 ### Features

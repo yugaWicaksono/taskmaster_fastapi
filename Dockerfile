@@ -10,5 +10,6 @@ COPY . ./
 # RUN pipenv install --deploy --system
 
 # Install production dependencies. according to gcloud
-RUN pip install --no-cache-dir -r requirements.txt
-CMD exec gunicorn --bind :$PORT --workers 1 --worker-class uvicorn.workers.UvicornWorker --threads 8  --timeout 0 main:api
+RUN pip3 install --no-cache-dir -r requirements.txt
+# this has to use the shell insted of exec
+CMD exec gunicorn --bind :$PORT --workers 1 --worker-class uvicorn.workers.UvicornWorker --threads 8 --timeout 0 main:api
