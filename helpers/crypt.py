@@ -16,6 +16,7 @@ class CryptoHelper(object):
     def verify_token(token: str, secret: str) -> bool:
         """
         verify JWT
+        :param secret: The secret string in the .env file
         :param token: JWT as string
         :return: True if the payload match
         """

@@ -10,4 +10,6 @@ class Record(BaseModel):
     start: str
     end: str
     delta: float
+    platform: str
+    notes: str
 

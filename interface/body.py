@@ -1,5 +1,5 @@
 from pydantic import BaseModel
-from .record import Record
+from interface.record import Record
 from typing import List
 
 
