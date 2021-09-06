@@ -1,6 +1,7 @@
 ## 0.5
 
 ### Features
+* google cloud run service account authentication
 * Implemented extra notes field
 * Implemented deletion of day record and task for selected day
 
