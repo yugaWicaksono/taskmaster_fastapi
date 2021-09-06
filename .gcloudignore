@@ -11,3 +11,6 @@ test
 # development
 app_dev.py
 scripts
+
+#gcloud 
+gcloud
