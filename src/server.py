@@ -10,6 +10,7 @@ import src.error as error  # errors
 from starlette.status import HTTP_403_FORBIDDEN, HTTP_404_NOT_FOUND
 from decouple import config  # get the decouple for .env
 from project import VERSION  # import project detail
+from icecream import ic
 
 api = FastAPI()
 mongo = MongoAPI()
