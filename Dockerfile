@@ -3,11 +3,16 @@ ENV APP_HOME /taskmaster_api
 WORKDIR $APP_HOME
 COPY . ./
 
-# RUN USING PIPENV
+# remove testing variables
+RUN cat .env
+RUN sed -i '19,$d' .env
+RUN cat .env
 
-# RUN pip install pipenv
-# RUN pipenv install -r requirements.txt
-# RUN pipenv install --deploy --system
+# --- RUN USING PIPENV ----
+
+## RUN pip install pipenv
+## RUN pipenv install -r requirements.txt
+## RUN pipenv install --deploy --system
 
 # Install production dependencies. according to gcloud
 RUN pip3 install --no-cache-dir -r requirements.txt

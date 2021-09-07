@@ -8,7 +8,11 @@ venv
 *__pycache__
 
 #testing
-test
+test/curl
+test/docker
+test/postman
+test/.test_env
+*.pytest_cache
 
 #gcloud config
 gcloud
