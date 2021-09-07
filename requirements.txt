@@ -8,3 +8,6 @@ gunicorn
 pymongo[srv]
 pyjwt~=2.1.0
 icecream~=2.1.1
+pytest
+pytest-asyncio
+httpx

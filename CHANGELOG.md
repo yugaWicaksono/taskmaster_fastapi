@@ -1,3 +1,8 @@
+## 0.7
+
+### Features
+* Implemented test suite
+
 ## 0.6
 
 ### Features
