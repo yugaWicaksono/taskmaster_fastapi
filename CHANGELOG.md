@@ -1,3 +1,8 @@
+## 0.6
+
+### Features
+* add icecream in requirements for pretty printing of console
+
 ## 0.5
 
 ### Features
