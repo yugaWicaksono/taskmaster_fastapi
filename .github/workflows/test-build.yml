@@ -49,4 +49,4 @@ jobs:
         cat .env
     - name: Test with pytest
       run: |
-        pytest test_suite.py::test_run
+        pytest test/fastapi/test_suite.py::test_run
