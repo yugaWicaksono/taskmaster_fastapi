@@ -11,3 +11,4 @@ icecream~=2.1.1
 pytest
 pytest-asyncio
 httpx
+requests
