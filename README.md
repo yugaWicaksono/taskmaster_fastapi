@@ -1,3 +1,5 @@
+[![CI-test](https://github.com/yugaWicaksono/taskmaster_fastapi/actions/workflows/test-build.yml/badge.svg)](https://github.com/yugaWicaksono/taskmaster_fastapi/actions/workflows/test-build.yml)
+
 # Taskmaster API (FastAPI + mongoDB) v.0.2
 
 This is my first time building an API using FastAPI and MongoDB. Also, the first experience I have with these both
