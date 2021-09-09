@@ -61,4 +61,4 @@ jobs:
         cat .env
     - name: Test with pytest
       run: |
-        python -m pytest
+        python -m pytest test_suite.py::test_run
