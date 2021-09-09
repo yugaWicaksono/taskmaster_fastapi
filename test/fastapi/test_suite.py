@@ -2,9 +2,9 @@ import time
 
 from fastapi.testclient import TestClient
 from icecream import ic
-from taskmaster_fastapi.src.server import api
+from .src.server import api
 from decouple import config
-from taskmaster_fastapi.project import VERSION
+from .project import VERSION
 import pytest
 from httpx import AsyncClient, Headers
 
