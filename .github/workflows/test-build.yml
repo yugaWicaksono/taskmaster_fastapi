@@ -54,6 +54,10 @@ jobs:
         echo "PASS = ${{ secrets.PASS }}" >> .env
         echo "SECRET = ${{ secrets.SECRET }}" >> .env
         echo "USER = ${{ secrets.USER }}" >> .env
+        echo "CLIENT_SECRET = ${{ secrets.CLIENT_SECRET }}" >> .env
+        echo "AUTH_USER = ${{ secrets.AUTH_USER }}" >> .env
+        echo "AUTH_ID = ${{ secrets.AUTH_ID }}" >> .env
+        echo "AUTH_IAT = ${{ secrets.AUTH_IAT }}" >> .env
         cat .env
     - name: Test with pytest
       run: |
