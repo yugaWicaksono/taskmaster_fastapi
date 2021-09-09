@@ -46,6 +46,14 @@ jobs:
         touch .env
         echo "TEST_TOKEN_KEY = ${{ secrets.ACCESS_KEY }}" >> .env
         echo "TEST_API_KEY = ${{ secrets.API_KEY }}" >> .env
+        echo "API_KEY_NAME = ${{ secrets.API_KEY_NAME }}" >> .env
+        echo "COLL_KEYS = ${{ secrets.COLL_KEYS }}" >> .env
+        echo "COLL_TASK = ${{ secrets.COLL_TASK }}" >> .env
+        echo "DB = ${{ secrets.DB}}" >> .env
+        echo "HOST = ${{ secrets.HOST }}" >> .env
+        echo "PASS = ${{ secrets.PASS }}" >> .env
+        echo "SECRET = ${{ secrets.SECRET }}" >> .env
+        echo "USER = ${{ secrets.USER }}" >> .env
         cat .env
     - name: Test with pytest
       run: |
