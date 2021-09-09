@@ -49,4 +49,4 @@ jobs:
         cat .env
     - name: Test with pytest
       run: |
-        pytest
+        python -m pytest
